@@ -54,19 +54,20 @@ class MyUserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-#    def create_superuser(self, email, password=None, **extra_fields):
+        #    def create_superuser(self, email, password=None, **extra_fields):
         """
         Creates and saves a superuser with the given email, first name,
         last name and password.
         """
-       # user = self.create_user(
-      #      email,
-     #       password=password,
+
+    # user = self.create_user(
+    #      email,
+    #       password=password,
     #        **extra_fields,
-   #     )
-  #      user.is_admin = True
- #       user.save(using=self._db)
-#        return user
+    #     )
+    #      user.is_admin = True
+    #       user.save(using=self._db)
+    #        return user
 
     def create_superuser(self, email, password=None, **extra_fields):
         """Create and save a SuperUser with the given email and password."""
@@ -77,7 +78,7 @@ class MyUserManager(BaseUserManager):
             raise ValueError('Superuser must have is_staff=True.')
         if extra_fields.get('is_superuser') is not True:
             raise ValueError('Superuser must have is_superuser=True.')
-        
+
         user = self.create_user(
             email,
             password=password,
@@ -87,6 +88,7 @@ class MyUserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
+
 #        return self._create_user(email, password, **extra_fields)
 # Create your models here.
 class User(AbstractUser):
@@ -95,12 +97,10 @@ class User(AbstractUser):
     email = models.EmailField(unique=True, null=False, blank=False)
     password = models.CharField(max_length=255)
     image = models.ImageField(upload_to='images/', default='images/logo.png')
-    country = models.CharField(max_length=15, null=True, blank=True)
+    phone = models.IntegerField(null=True, blank=True),
+    age = models.DateTimeField(null=True, blank=True),
     city = models.CharField(max_length=20, null=True, blank=True)
-    study = models.CharField(max_length=500, null=True, blank=True)
-    work = models.CharField(max_length=500, null=True, blank=True)
-    research = models.CharField(max_length=500, null=True, blank=True)
-    bio = models.CharField(max_length=500, null=True, blank=True)
+    address = models.CharField(max_length=500, null=True, blank=True)
     objects = MyUserManager()
 
     # username = models.CharField(max_length=50, default=None)
