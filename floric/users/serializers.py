@@ -1,11 +1,20 @@
 from rest_framework import serializers
-from .models import User
+from django.contrib.auth.models import User
 
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = '__all__'
+        # fields = ['date_joined',
+        #           "first_name",
+        #           "last_name",
+        #           "email",
+        #           "image",
+        #           "phone",
+        #           "age",
+        #           "city",
+        #           "address"]
 
     def create(self, *args, **kwargs):
         user = super().create(*args, **kwargs)
@@ -28,4 +37,3 @@ class UserDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = "__all__"
-
