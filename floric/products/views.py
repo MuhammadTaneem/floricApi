@@ -11,18 +11,18 @@ from pagination.pagination import CustomPagination
 class CategoryViewSet(ModelViewSet):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
-    permission_classes = [permissions.IsAuthenticated]
+    # permission_classes = [permissions.AllowAny]
     # lookup_field = 'author'0
 
     # def get_queryset(self):
     #     queryset = User.objects.filter(id=self.request.query_params.get('id'))
     #     return queryset
-
-    def perform_create(self, serializer):
-        serializer.save(author=self.request.user)
-
-    def perform_update(self, serializer):
-        serializer.save(author=self.request.user)
+    #
+    # def perform_create(self, serializer):
+    #     serializer.save(author=self.request.user)
+    #
+    # def perform_update(self, serializer):
+    #     serializer.save(author=self.request.user)
 
 
 class ProductViewSet(ModelViewSet):

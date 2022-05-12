@@ -6,10 +6,11 @@ User = get_user_model()
 
 
 class Category(models.Model):
-    category = models.CharField(max_length=200, null=False, blank=False)
+    name = models.CharField(max_length=200, null=False, blank=False)
+    cat_img = models.ImageField(upload_to='images/', null=False, blank=False, default='images/logo.png')
 
     def __str__(self):
-        return self.category
+        return self.name
 
 
 class Product(models.Model):
