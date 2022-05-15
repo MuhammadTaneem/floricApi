@@ -14,17 +14,19 @@ class Category(models.Model):
 
 
 class Product(models.Model):
-    name = models.CharField(max_length=1000, null=False)
+    name = models.CharField(max_length=512, null=False)
     description = models.CharField(max_length=5000, null=False)
     weight = models.CharField(max_length=1000, null=True, blank=True)
     quantity = models.IntegerField(null=False, blank=False, default=0)
-    color = models.CharField(max_length=1000, null=True, blank=True)
-    brand = models.CharField(max_length=1000, null=True, blank=True)
+    color = models.CharField(max_length=256, null=True, blank=True)
+    brand = models.CharField(max_length=256, null=True, blank=True)
+    Model = models.CharField(max_length=256, null=True, blank=True)
     price = models.FloatField(null=False)
     size = models.CharField(max_length=15, null=True, blank=True)
     posted_time = models.DateTimeField(default=timezone.now)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     product_category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    product_img = models.ImageField(upload_to='images/', null=False, blank=False, default='images/logo.png')
 
     def __str__(self):
         return self.name
