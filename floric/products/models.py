@@ -26,7 +26,10 @@ class Product(models.Model):
     posted_time = models.DateTimeField(default=timezone.now)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     product_category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    product_img = models.ImageField(upload_to='images/', null=False, blank=False, default='images/logo.png')
+    product_img1 = models.ImageField(upload_to='images/', null=False, blank=False, default='images/logo.png')
+    product_img2 = models.ImageField(upload_to='images/', null=True, blank=True, default='images/logo.png')
+    product_img3 = models.ImageField(upload_to='images/', null=True, blank=True, default='images/logo.png')
+    product_img4 = models.ImageField(upload_to='images/', null=True, blank=True, default='images/logo.png')
 
     def __str__(self):
         return self.name
