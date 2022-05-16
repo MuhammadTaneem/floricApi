@@ -96,7 +96,7 @@ class User(AbstractUser):
     last_name = models.CharField(max_length=35)
     email = models.EmailField(unique=True, null=False, blank=False)
     password = models.CharField(max_length=255)
-    image = models.ImageField(upload_to='images/', default='images/logo.png')
+    image = models.ImageField(upload_to='images/user/', default='images/user/account-avatar-profile.png')
     phone = models.IntegerField(null=True, blank=True),
     age = models.DateTimeField(null=True, blank=True),
     city = models.CharField(max_length=20, null=True, blank=True)
