@@ -13,6 +13,8 @@ urlpatterns = [
     path('api/profile/', include('users.urls')),
     path('api/products/', include('products.urls')),
     path('api/orders/', include('order.urls')),
+    path('api/cart/', include('cart.urls')),
+    path('api/ratting/', include('ratting.urls')),
 ]
 urlpatterns += static(settings.MEDIA_URL,
                       document_root=settings.MEDIA_ROOT)
