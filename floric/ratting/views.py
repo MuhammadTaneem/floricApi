@@ -13,12 +13,11 @@ sys.path.append("..")
 from permissions.permissions import AuthorOrReadOnly
 
 
-
-
 class RattingViewSet(ModelViewSet):
     queryset = Ratting.objects.all()
     serializer_class = RattingSerializer
     permission_classes = [AuthorOrReadOnly]
+
     # lookup_field = 'author'0
 
     def get_queryset(self):
@@ -26,8 +25,7 @@ class RattingViewSet(ModelViewSet):
         return queryset
 
     def perform_create(self, serializer):
-        serializer.save(author=self.request.user)
-
+        serializer.save(author=self.request.user, name= self.request.user.first_name + ' ' + self.request.user.last_name )
 
 # class ProductViewSet(ModelViewSet):
 #     queryset = Product.objects.all()
