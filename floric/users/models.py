@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser, BaseUserManager
-
+from django.utils import timezone
 
 class CustomUserManager(BaseUserManager):
 
@@ -92,15 +92,16 @@ class MyUserManager(BaseUserManager):
 #        return self._create_user(email, password, **extra_fields)
 # Create your models here.
 class User(AbstractUser):
-    first_name = models.CharField(max_length=34)
-    last_name = models.CharField(max_length=35)
+    first_name = models.CharField(max_length=255, null=False, blank=False)
+    last_name = models.CharField(max_length=255, null=False, blank=False)
     email = models.EmailField(unique=True, null=False, blank=False)
     password = models.CharField(max_length=255)
     image = models.ImageField(upload_to='images/user/', default='images/user/account-avatar-profile.png')
-    phone = models.IntegerField(null=True, blank=True),
-    age = models.DateTimeField(null=True, blank=True),
-    city = models.CharField(max_length=20, null=True, blank=True)
-    address = models.CharField(max_length=500, null=True, blank=True)
+    phone = models.IntegerField(null=False, blank=False, default=000000)
+    date_of_birth = models.DateField(null=False, blank=False, default=timezone.now)
+    gender = models.CharField(max_length=31, null=False, blank=False, default='male')
+    city = models.CharField(max_length=31, null=False, blank=False, default='dhaka')
+    address = models.CharField(max_length=1023, null=False, blank=False, default='set your address from profile ')
     objects = MyUserManager()
 
     # username = models.CharField(max_length=50, default=None)

@@ -30,7 +30,7 @@ class ProductViewSet(ModelViewSet):
     serializer_class = ProductSerializer
     permission_classes = [permissions.AllowAny]
     filter_backends = (SearchFilter, OrderingFilter)
-    search_fields = ('name', 'description', 'color', 'brand', 'price', 'product_category__category')
+    search_fields = ('name', 'description', 'color', 'brand', 'price', 'product_category__name')
     pagination_class = CustomPagination
 
     # lookup_field = 'author'0
