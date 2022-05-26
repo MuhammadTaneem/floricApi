@@ -1,5 +1,7 @@
 from django.shortcuts import redirect
-from .models import User
+# from .models import User
+from django.contrib.auth import get_user_model
+User = get_user_model()
 # from floricApi.floric.products.serializers import UserDetailSerializer
 from .serializers import UserDetailSerializer
 from rest_framework.viewsets import ModelViewSet
