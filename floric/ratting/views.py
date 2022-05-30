@@ -25,7 +25,7 @@ class RattingViewSet(ModelViewSet):
         return queryset
 
     def perform_create(self, serializer):
-        serializer.save(author=self.request.user, name= self.request.user.first_name + ' ' + self.request.user.last_name )
+        serializer.save(author=self.request.user, name=self.request.user.first_name + ' ' + self.request.user.last_name)
 
 # class ProductViewSet(ModelViewSet):
 #     queryset = Product.objects.all()

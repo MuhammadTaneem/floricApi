@@ -10,6 +10,7 @@ from rest_framework.filters import SearchFilter, OrderingFilter
 import sys
 
 sys.path.append("..")
+from products.models import Product
 from pagination.pagination import CustomPagination
 
 
@@ -17,6 +18,7 @@ class CartViewSet(ModelViewSet):
     queryset = Cart.objects.all()
     serializer_class = CartSerializer
     permission_classes = [permissions.IsAuthenticated]
+
     # lookup_field = 'author'0
 
     def get_queryset(self):
@@ -24,8 +26,13 @@ class CartViewSet(ModelViewSet):
         return queryset
 
     def perform_create(self, serializer):
-        serializer.save(author=self.request.user)
-
+        print(self.request.data['product_id'])
+        product = Product.objects.get(pk=self.request.data['product_id'])
+        print(product)
+        serializer.save(author=self.request.user,
+                        product_name=product.name,
+                        product_price=product.price * int(self.request.data['quantity']),
+                        product_img=product.product_img1, )
 
 # class ProductViewSet(ModelViewSet):
 #     queryset = Product.objects.all()

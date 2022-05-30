@@ -1,20 +1,19 @@
 from rest_framework import serializers
-# from django.contrib.auth.models import User
-from .models import User
+from django.contrib.auth.models import User
+# from django.contrib.auth import get_user_model
+# User = get_user_model()
 
-class UserSerializer(serializers.ModelSerializer):
-    class Meta:
+from .models import User
+# from django.contrib.auth import get_user_model
+# # User = get_user_model()
+from djoser.serializers import UserCreateSerializer
+
+# from .models import User
+
+class UserSerializer(UserCreateSerializer):
+    class Meta(UserCreateSerializer.Meta):
         model = User
         fields = '__all__'
-        # fields = ['date_joined',
-        #           "first_name",
-        #           "last_name",
-        #           "email",
-        #           "image",
-        #           "phone",
-        #           "age",
-        #           "city",
-        #           "address"]
 
     def create(self, *args, **kwargs):
         user = super().create(*args, **kwargs)
@@ -33,7 +32,33 @@ class UserSerializer(serializers.ModelSerializer):
         return instance
 
 
-class UserDetailSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = User
-        fields = "__all__"
+# from .models import User
+
+
+# class UserDetailSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = User
+#         fields = ['date_joined',
+#                   "first_name",
+#                   "last_name",
+#                   "email",
+#                   "image",
+#                   "phone",
+#                   "date_of_birth",
+#                   "gender",
+#                   "date_of_birth",
+#                   "city",
+#                   "address"]
+
+
+# from rest_framework import serializers
+# from .models import User
+# from django.contrib.auth import get_user_model
+# # User = get_user_model()
+# from djoser.serializers import UserCreateSerializer
+#
+#
+# class UserSerializer(UserCreateSerializer):
+#     class Meta(UserCreateSerializer.Meta):
+#         model = User
+#         fields = ['first_name', 'last_name', 'email', 'password']
